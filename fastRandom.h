@@ -25,13 +25,19 @@
 #include <type_traits>
 #include <random>
 
-
 namespace fstRnd {
 
 //#define FSTRND_USES_BUILT_TABLE   // uncomment to use 32Bit algorithms: LFI84 & SWB 
 
-class fastRandom32Class {
-
+//
+// fastRandom32Class 
+//
+// 32bit pseudo-random generator
+// All values are returned in interval [0, UINT32_MAX] 
+// to get values between [INT32_MIN, INT32_MAX] just cast result to int32_t
+///////////////////////////////////////////////////////////////////////////////
+class fastRandom32Class 
+{
 public:
     fastRandom32Class()
     {
@@ -49,14 +55,14 @@ public:
     inline uint32_t FIB()  { return (b=a+b),(a=b-a)          ; }
     inline uint32_t XSH()  { return jsr^=(jsr<<17), jsr^=(jsr>>13), jsr^=(jsr<<5); }
 
-    inline uint32_t KISS() { return (MWC()^CNG())+XSH(); }
+    inline uint32_t KISS() { return (MWC()^CNG())+XSH(); } // period 2^123
 
 #ifdef FSTRND_USES_BUILT_TABLE
     inline uint32_t LFIB4() { return c++,t[c]=t[c]+t[uint8_t(c+58)]+t[uint8_t(c+119)]+t[uint8_t(c+178)];}
     inline uint32_t SWB()   { uint32_t bro; return c++,bro=(x<y),t[c]=(x=t[uint8_t(c+34)])-(y=t[uint8_t(c+19)]+bro); }
 #endif
 
-    inline static uint32_t xorShift()
+    inline static uint32_t xorShift() //period 2^32-1
     {
         // Algorithm "xor" from p. 4 of Marsaglia, "Xorshift RNGs" 
         static uint32_t state = std::chrono::system_clock::now().time_since_epoch().count();
@@ -91,7 +97,15 @@ private:
 #endif
 };
 
-class fastRandom64Class {
+//
+// fastRandom64Class 
+//
+// 64bit pseudo-random generator
+// All values are returned in interval [0, UINT64_MAX] 
+// to get values between [INT64_MIN, INT64_MAX] just cast result to int64_t
+///////////////////////////////////////////////////////////////////////////////
+class fastRandom64Class 
+{
 
 public:
     fastRandom64Class()
@@ -108,10 +122,9 @@ public:
     inline uint64_t XSH() { return y^=(y<<13), y^=(y>>17), y^=(y<<43);  }
     inline uint64_t FIB() { return (b=a+b),(a=b-a);                     }
 
-    inline uint64_t KISS () { return MWC()+XSH()+CNG(); }
+    inline uint64_t KISS () { return MWC()+XSH()+CNG(); } //period 2^250
 
-
-    inline static uint64_t xorShift()
+    inline static uint64_t xorShift() //period 2^64-1
     {
         // Algorithm "xor" from p. 4 of Marsaglia, "Xorshift RNGs" 
         static uint64_t state = std::chrono::system_clock::now().time_since_epoch().count();
@@ -149,14 +162,15 @@ public:
                                           fT(5.4210108624275221700372640043497e-20))
     {}
     
+    // period 2^123 / 2^250 (32/64 bit)
     inline fT UNI() { return fT(          fastRandom.KISS())  * inv_uiT_max;  } // return [ 0.0, 1.0]
     inline fT VNI() { return fT(((signed) fastRandom.KISS())) * inv_2uiT_max; } // return [-1.0, 1.0]
     
-    // fastest
+    // fastest but with period 2^32-1 / 2^64-1 (32/64 bit generator)
     inline fT xshUNI() { return fT(          classT::xorShift() ) * inv_uiT_max;  }
     inline fT xshVNI() { return fT(((signed) classT::xorShift())) * inv_2uiT_max; }
 
-    inline fT floatRnd(fT min, fT max) { return min + (max-min) * UNI(); }
+    inline fT range(fT min, fT max) { return min + (max-min) * UNI(); }
 
     inline auto KISS()     { return fastRandom.KISS();  }
     inline auto xorShift() { return classT::xorShift(); }
@@ -180,7 +194,7 @@ using fFastRand64 = floatfastRandomClass<float,  fastRand64>;
 // double precision interface for 64 bit generator
 using dFastRand64 = floatfastRandomClass<double, fastRand64>;
 
-} // end of namespace FstRnd 
+}; // end of namespace FstRnd 
 
 
 
