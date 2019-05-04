@@ -13,6 +13,8 @@ Sources are well documented, and at the end of the file all the algorithms are e
 
 All values are returned in interval `[0, UINT64_MAX]` for 64bit version and `[0, UINT32_MAX]` for 32bit version, but if you need (e.g.) values between `[INT32_MIN, INT32_MAX]`, just cast result to `int32_t` (and same for 64bit)
 
+It includes also a *floating point* (single/double precision) template class, as a helper/front-end to generate fast numbers in `[-1.0, 1.0]` / `[0.0, 1.0]` / `[min, max]` intervals
+
 The classes are declared insde the namespace `fstRnd`
 
 Alternative declaration (`typedef`) are provided for simplicity/abbreviation
@@ -33,7 +35,7 @@ using fFastRand64 = floatfastRandomClass<float,  fastRand64>;
 using dFastRand64 = floatfastRandomClass<double, fastRand64>;
 ```
 
-Example to use KISS 32bit algorithm:
+- Example: use KISS 32bit algorithm:
 ``` C++
     fstRnd::fastRand32 fastRandom; // for 32bit
     for(int i=0; i<10000; i++)
@@ -42,22 +44,20 @@ Example to use KISS 32bit algorithm:
 
 Both classes contain simplest and fastest `xorShift` (32/64 bit), as static member function.
 
-Example to use static xorShift 64bit algorithm:
+- Example: use static xorShift 64bit algorithm:
 ``` C++
     for(int i=0; i<10000; i++)
         cout << fstRnd::fastRand64::xorShift() << endl; // for 64bit
 ```
 
-It includes also a *floating point* (single/double precision) template class, as a helper/front-end to generate fast numbers in `[-1.0, 1.0]` / `[0.0, 1.0]` / `[min, max]` intervals
-
-Example use KISS 32bit algorithm in [-1.0, 1.0] interval, with double precision floating point:
+- Example: use KISS 32bit algorithm in [-1.0, 1.0] interval, with double precision floating point:
 ``` C++
     fstRnd::dFastRand32 fastRandom; // for 32bit generator and double precision results [-1.0, 1.0]
     for(int i=0; i<10000; i++)
         cout << fstRnd::fastRandom.VNI() << endl;
 ```
 
-Example use KISS 64bit algorithm in [min, max] interval, with single precision floating point:
+- Example: use KISS 64bit algorithm in [min, max] interval, with single precision floating point:
 ``` C++
     const float fMin = -10.0, fMax=25.0;
     fstRnd::fFastRand64 fastRandom; // for 64bit generator and single precision results [fMin, fMax]
