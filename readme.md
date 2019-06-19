@@ -2,7 +2,7 @@
 
 **fastRandomGeneretor** is a  single and little header-only library for 32bit and 64bit FAST pseudoRandom generator, based on Marsaglia algorithms.
 
-Just include 'fastRandom.h` in your code:
+Just include `fastRandom.h` in your code:
 ```C++
 #include "fastRandom.h"
 ```
@@ -39,7 +39,7 @@ using dFastRand64 = floatfastRandomClass<double, fastRand64>;
 ``` C++
     fstRnd::fastRand32 fastRandom; // for 32bit
     for(int i=0; i<10000; i++)
-        cout << fstRnd::fastRandom.KISS() << endl;
+        cout << fastRandom.KISS() << endl;
 ```
 
 Both classes contain simplest and fastest `xorShift` (32/64 bit), as static member function.
@@ -54,7 +54,7 @@ Both classes contain simplest and fastest `xorShift` (32/64 bit), as static memb
 ``` C++
     fstRnd::dFastRand32 fastRandom; // for 32bit generator and double precision results [-1.0, 1.0]
     for(int i=0; i<10000; i++)
-        cout << fstRnd::fastRandom.VNI() << endl;
+        cout << fastRandom.VNI() << endl;
 ```
 
 - Example: use KISS 64bit algorithm in [min, max] interval, with single precision floating point:
@@ -62,10 +62,10 @@ Both classes contain simplest and fastest `xorShift` (32/64 bit), as static memb
     const float fMin = -10.0, fMax=25.0;
     fstRnd::fFastRand64 fastRandom; // for 64bit generator and single precision results [fMin, fMax]
     for(int i=0; i<10000; i++)
-        cout << fstRnd::fastRandom.range(fMin,fMax) << endl;
+        cout << fastRandom.range(fMin,fMax) << endl;
 ```
 
-This library is currently used in [**glChAoS.P / wglChAoS.P](https://github.com/BrutPitt/glChAoS.P)
+This library is currently used in [**glChAoS.P / wglChAoS.P**](https://github.com/BrutPitt/glChAoS.P)
 
 To generate DLA3D (Diffusion Limited Aggregation) - DLA 3D
 [![](https://raw.githubusercontent.com/BrutPitt/glChAoS.P/master/screenShots/dla3D.jpg)](https://twitter.com/i/status/1120431893818769409)
