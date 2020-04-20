@@ -1,13 +1,13 @@
-# fastRandomGeneretor
+# fastRandomGenerator
 
-**fastRandomGeneretor** is a  single and little header-only library for 32bit and 64bit FAST pseudoRandom generator, based on Marsaglia algorithms.
+**fastRandomGenerator** is a  single and little header-only library for 32bit and 64bit FAST pseudoRandom generator, based on Marsaglia algorithms.
 
 Just include `fastRandom.h` in your code:
 ```C++
 #include "fastRandom.h"
 ```
 
-It includes two classes to generate `uint32_t/int32_t` and `uint64_t/int642_t` preudo-random numbers, based on KISS (Keep it Sample Stupid) and others algorithms of George Marsaglia.
+It includes two classes to generate `uint32_t/int32_t` and `uint64_t/int642_t` pseudo-random numbers, based on KISS (Keep it Sample Stupid) and others algorithms of George Marsaglia.
 
 Sources are well documented, and at the end of the file all the algorithms are explained, with links to author pages
 
@@ -15,7 +15,7 @@ All values are returned in interval `[0, UINT64_MAX]` for 64bit version and `[0,
 
 It includes also a *floating point* (single/double precision) template class, as a helper/front-end to generate fast numbers in `[-1.0, 1.0]` / `[0.0, 1.0]` / `[min, max]` intervals
 
-The classes are declared insde the namespace `fstRnd`
+The classes are declared inside the namespace `fstRnd`
 
 Alternative declaration (`typedef`) are provided for simplicity/abbreviation
 ``` C++
@@ -38,6 +38,7 @@ using dFastRand64 = floatfastRandomClass<double, fastRand64>;
 - Example: use KISS 32bit algorithm:
 ``` C++
     fstRnd::fastRand32 fastRandom; // for 32bit
+//  fstRnd::fastRand32 fastRandom(100); or with seed initialization: to (re)generate a specific ramdom numbers sequence 
     for(int i=0; i<10000; i++)
         cout << fastRandom.KISS() << endl;
 ```
@@ -53,6 +54,17 @@ Both classes contain simplest and fastest `xorShift` (32/64 bit), as static memb
 - Example: use KISS 32bit algorithm in [-1.0, 1.0] interval, with double precision floating point:
 ``` C++
     fstRnd::dFastRand32 fastRandom; // for 32bit generator and double precision results [-1.0, 1.0]
+    for(int i=0; i<10000; i++)
+        cout << fastRandom.VNI() << endl;
+```
+- Example: use KISS 32bit algorithm in [-1.0, 1.0] interval, with double precision floating point, generating two times same sequence of random numbers:
+``` C++    
+    fstRnd::dFastRand32 fastRandom(100); // initialize the seed with a specific value
+    for(int i=0; i<10000; i++)
+        cout << fastRandom.VNI() << endl;
+
+    fastRandom.reset();   // reset current internal value to starting ones
+    fastRandom.seed(100); // re-initialize the seed with same previous value
     for(int i=0; i<10000; i++)
         cout << fastRandom.VNI() << endl;
 ```
