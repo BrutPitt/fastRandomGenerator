@@ -1,8 +1,8 @@
 # fastPRNG == > https://github.com/BrutPitt/fastPRNG
 
-This project will no longer be updated, in favor of [**fastPRNG**](https://github.com/BrutPitt/fastPRNG)
-All algorithms presents in **fastRandomGenerator** are present also in [**fastPRNG**](https://github.com/BrutPitt/fastPRNG)
-This page remains active only as a reference to/for old projects that have use it
+This project will no longer be updated, in favor of [**fastPRNG**](https://github.com/BrutPitt/fastPRNG)\
+All algorithms presents in **fastRandomGenerator** are present also in [**fastPRNG**](https://github.com/BrutPitt/fastPRNG)\
+This page remains active only as a reference to/for old projects that have use it\
 
 ## fastRandomGenerator - old project: use [fastPRNG](https://github.com/BrutPitt/fastPRNG)
 
