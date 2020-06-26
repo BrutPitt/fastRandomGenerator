@@ -1,10 +1,12 @@
-# fastPRNG == > https://github.com/BrutPitt/fastPRNG
+# For new projects use [fastPRNG](https://github.com/BrutPitt/fastPRNG)
 
+##
 This project will no longer be updated, in favor of [**fastPRNG**](https://github.com/BrutPitt/fastPRNG)\
 All algorithms presents in **fastRandomGenerator** are present also in [**fastPRNG**](https://github.com/BrutPitt/fastPRNG)\
-This page remains active only as a reference to/for old projects that have use it\
+This page remains active only as a reference to/for old projects that have use it
+##
 
-## fastRandomGenerator - old project: use [fastPRNG](https://github.com/BrutPitt/fastPRNG)
+## fastRandomGenerator  (for new projects use [fastPRNG](https://github.com/BrutPitt/fastPRNG))
 
 **fastRandomGenerator** is a  single and little header-only library for 32bit and 64bit FAST pseudoRandom generator, based on Marsaglia algorithms.
 
@@ -86,7 +88,7 @@ Both classes contain simplest and fastest `xorShift` (32/64 bit), as static memb
 This library is currently used in [**glChAoS.P / wglChAoS.P**](https://github.com/BrutPitt/glChAoS.P)
 
 To generate DLA3D (Diffusion Limited Aggregation) - DLA 3D
-[![](https://raw.githubusercontent.com/BrutPitt/glChAoS.P/master/screenShots/dla3D.jpg)](https://twitter.com/i/status/1120431893818769409)
+[![](https://raw.githubusercontent.com/BrutPitt/myRepos/master/glChAoSP/screenShots/dla3D.jpg)](https://www.michelemorrone.eu/glchaosp/DLA3D.html)
 
 And in Hypercomplex fractals with stochastic IIM (Inverse Iteration Method) algorithms 
 [![](https://user-images.githubusercontent.com/16171743/50758310-1f231a80-1262-11e9-8065-3199292ff9f1.jpg)](https://www.michelemorrone.eu/glchaosp/Hypercomplex.html)
